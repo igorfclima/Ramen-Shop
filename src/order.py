@@ -32,23 +32,37 @@ class Order:
 
     def add_item(self, item: MenuItem) -> None:
         """Adiciona um MenuItem ao pedido e recalcula o preço total."""
-        pass
+        self.__items.append((item, 1))
 
     def _calculate_total_price(self) -> float:
         """(Método interno) Calcula o preço total com base nos itens da lista."""
-        pass
+        return sum(item.price * quantity for item,quantity in self.__items)
 
     def update_status(self, new_status: str) -> None:
         """
         Atualiza o status do pedido.
         Ex: "Em Preparação", "Pronto", "Retirado".
         """
-        pass
+        options = ["Em Preparação", "Pronto", "Retirado"]
+        if new_status not in options:
+            raise ValueError(f"Status inválido. Opções válidas: {options}")
+        self.__status = new_status
 
     def get_details(self) -> Dict[str, any]:
         """Retorna um dicionário com todos os detalhes do pedido."""
-        pass
+        return {
+            "order_number": self.__order_number,
+            "data": self.timestamp,
+            "items_quantity": self.__items.__len__,
+            "total_price": self._calculate_total_price(),
+            "status": self.__status
+        }
 
     def __str__(self) -> str:
         """Retorna uma representação em string do pedido."""
-        pass
+        items_str = "\n".join([f"{item.name} (x{quantity}) - ${item.price * quantity:.2f}" for item, quantity in self.__items])
+        return (f"Order Number: {self.__order_number}\n"
+                f"Timestamp: {self.__timestamp}\n"
+                f"Items:\n{items_str}\n"
+                f"Total Price: ${self._calculate_total_price():.2f}\n"
+                f"Status: {self.__status}")
