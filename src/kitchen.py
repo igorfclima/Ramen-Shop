@@ -1,4 +1,4 @@
-from time import time
+from time import sleep
 from order import Order
 
 
@@ -15,7 +15,7 @@ class Kitchen:
         """
         print(f"Processando pedido {order.order_number}...")
         print("Preparando...")
-        time.sleep(2)
+        sleep(2)
         print("Pedido pronto!")
         order.update_status("Pronto")
         self.notify_ready(order)
