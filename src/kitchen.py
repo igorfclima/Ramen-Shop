@@ -1,3 +1,4 @@
+from time import time
 from order import Order
 
 
@@ -12,8 +13,13 @@ class Kitchen:
         """
         Recebe um pedido, simula o preparo e atualiza seu status para 'Pronto'.
         """
-        pass
+        print(f"Processando pedido {order.order_number}...")
+        print("Preparando...")
+        time.sleep(2)
+        print("Pedido pronto!")
+        order.update_status("Pronto")
+        self.notify_ready(order)
 
     def notify_ready(self, order: Order) -> None:
         """Notifica que um pedido específico está pronto para retirada."""
-        pass
+        print(f"Pedido {order.order_number} está pronto para retirada!")
