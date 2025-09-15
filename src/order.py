@@ -30,13 +30,14 @@ class Order:
         self.__total_price = 0.0
         self.__status = "Em Preparação"
 
-    def add_item(self, item: MenuItem) -> None:
-        """Adiciona um MenuItem ao pedido e recalcula o preço total."""
-        self.__items.append((item, 1))
+    def add_item(self, item: MenuItem, quantity: int = 1) -> None:
+        if quantity <= 0:
+            raise ValueError("A quantidade deve ser maior que zero.")
+        self.__items.append((item, quantity))
 
     def _calculate_total_price(self) -> float:
         """(Método interno) Calcula o preço total com base nos itens da lista."""
-        return sum(item.price * quantity for item,quantity in self.__items)
+        return sum(item.price * quantity for item, quantity in self.__items)
 
     def update_status(self, new_status: str) -> None:
         """
@@ -53,7 +54,7 @@ class Order:
         return {
             "order_number": self.__order_number,
             "data": self.timestamp,
-            "items_quantity": self.__items.__len__,
+            "items_quantity": len(self.__items),
             "total_price": self._calculate_total_price(),
             "status": self.__status
         }
