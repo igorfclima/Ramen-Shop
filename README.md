@@ -92,7 +92,7 @@ Siga os passos abaixo para configurar e rodar o projeto em seu ambiente local.
 
 ```sh
 
-    git clone [https://github.com/seu-usuario/ramen-shop-project.git](https://github.com/seu-usuario/ramen-shop-project.git)
+    git clone [https://github.com/igorfclima/ramen-shop-project.git](https://github.com/seu-usuario/ramen-shop-project.git)
 
 ```
 
