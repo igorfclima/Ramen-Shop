@@ -136,6 +136,6 @@ class RamenShopSystem:
         located_order = self._locate_order_by_number(order_number)
         if located_order and located_order.status == "Pronto":
             located_order.update_status("Retirado")
-            self.__cash_register.record_order(located_order.total_price)
+            self.__cash_register.record_order(located_order)
             return True
         return False
